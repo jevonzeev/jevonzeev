@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title>Jevon Zeev</title>
+    <meta name="description" content="Full-stack creative tech developer — Python/Django backends, Linux systems, and interactive web & game experiences built with Three.js, C# and Blender.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jevonzeev.github.io/jevonzeev/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Jevon Zeev">
+    <meta property="og:description" content="Full-stack creative tech developer — Python/Django backends, Linux systems, and interactive web & game experiences.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jevonzeev.github.io/jevonzeev/">
+    <meta property="og:image" content="https://jevonzeev.github.io/jevonzeev/assets/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jevon Zeev",
+      "jobTitle": "Full-Stack Creative Tech Developer",
+      "url": "https://jevonzeev.github.io/jevonzeev/",
+      "sameAs": ["https://github.com/jevonzeev"]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="hero">
+        <div class="hero-prompt">jevon@kali:~$ whoami</div>
+        <span class="badge">Full Stack Developer</span>
+        <h1 class="hero-title">Jevon Zeev</h1>
+        <p class="tagline">
+            Welcome to my GitHub. I specialise in <span class="highlight">Python Development</span> and <span class="highlight">Debian Linux Environments</span>, building custom backend systems, automation tools, and modular web applications. Beyond engineering, I'm a creative developer working with Blender motion graphics and animation.
+        </p>
+    </header>
+
+    <!-- PET WIDGET -->
+    <section class="pet-widget-section" aria-label="GitHub Tamagotchi Pet Widget">
+        <h2 class="section-title" style="margin-bottom: 0;">// GitHub Pet</h2>
+        <p class="pet-subtitle">
+            Meet <strong>Werewolf John</strong> my personal Tamagotchi. He reacts to my live GitHub activity.<br>
+            More commits = wilder werewolf! Keep him fed and happy. 🐾
+        </p>
+
+        <!-- Main display + food tray row -->
+        <div class="pet-main-row">
+
+            <!-- Sprite display -->
+            <div id="pet-display" class="state-sleeping">
+                <img id="pet-sprite" src="assets/sleeping.jpg" alt="GitHub pet – currently sleeping" role="img">
+                <div id="pet-status-label" class="pet-status sleeping" aria-live="polite">💤 Sleeping…</div>
+            </div>
+
+            <!-- Food tray -->
+            <div class="food-tray" id="food-tray" aria-label="Food items" style="display:none;">
+                <p class="food-tray-title">🍽️ Feed John</p>
+                <div class="food-items">
+                    <div class="food-item" id="food-burger" title="Burger – makes John drowsy." onclick="actionFeedBurger()">
+                        <img src="assets/burger.jpg" alt="Burger">
+                        <span>🍔 Burger</span>
+                        <small>Sleepiness ↑</small>
+                    </div>
+                    <div class="food-item" id="food-coffee" title="Coffee – boosts energy." onclick="actionFeedCoffee()">
+                        <img src="assets/coffee.jpg" alt="Coffee">
+                        <span>☕ Coffee</span>
+                        <small>Energy ↑↑</small>
+                    </div>
+                    <div class="food-item" id="food-steak" title="Raw Steak – calms the werewolf" onclick="actionFeedSteak()" style="display:none;">
+                        <img src="assets/steak.jpg" alt="Raw Steak">
+                        <span>🥩 Raw Steak</span>
+                        <small>Calms wolf</small>
+                    </div>
+                    <div class="food-item" id="food-moon" title="Moonlit Melody – pacifies werewolf" onclick="actionMoonlitMelody()" style="display:none;">
+                        <img src="assets/moon.jpg" alt="Moonlit Melody">
+                        <span>🌙 Moon Song</span>
+                        <small>Sleep spell</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats board -->
+        <div class="pet-stats-board">
+            <div class="stat-row">
+                <span>Current Form:</span>
+                <strong id="form-val" style="color: var(--accent-color);">SLEEPING</strong>
+            </div>
+
+            <div class="stat-row">
+                <span>😴 Sleepiness:</span>
+                <span id="sleepy-val">60%</span>
+            </div>
+            <div class="bar-bg">
+                <div id="sleepy-bar" class="bar-fill" style="width:60%;"></div>
+            </div>
+
+            <div class="stat-row">
+                <span>⚡ Energy:</span>
+                <span id="energy-val">0%</span>
+            </div>
+            <div class="bar-bg">
+                <div id="energy-bar" class="bar-fill"></div>
+            </div>
+
+            <div class="stat-row">
+                <span>💜 Happiness:</span>
+                <span id="happy-val">50%</span>
+            </div>
+            <div class="bar-bg">
+                <div id="happy-bar" class="bar-fill" style="width:50%;"></div>
+            </div>
+
+            <div class="stat-row">
+                <span>Commits this week:</span>
+                <span id="commits-val">…</span>
+            </div>
+        </div>
+
+        <!-- Interaction buttons -->
+        <div class="pet-controls" id="pet-controls" role="group" aria-label="Pet interactions">
+            <button class="pet-btn poke-btn" onclick="actionPoke()">👉 Poke</button>
+            <button class="pet-btn story-btn" onclick="openStory()">📖 Read Lore</button>
+        </div>
+
+        <p class="pet-hint" id="pet-hint">John is resting soundly. Click 'Poke' or feed him to wake him up!</p>
+    </section>
+
+    <!-- STORY DIALOG -->
+    <dialog id="story-dialog">
+        <div class="story-dialog-inner">
+            <h3>// Werewolf John: Lore</h3>
+            <p id="story-text">John was once an ordinary debugger... until an accidental merge during a full moon fused his commit history with an ancient lupine daemon.</p>
+            <button class="pet-btn melody-btn" id="story-close-btn">Close Grimoire</button>
+        </div>
+    </dialog>
+
+    <!-- PROJECTS SECTION -->
+    <main>
+        <!-- Fixed ID here so dynamic tabs inject properly -->
+        <div class="category-tabs" id="category-tabs" role="tablist">
+            <button class="category-tab active" role="tab">All Projects</button>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+            <div class="loading-text">Loading projects from GitHub...</div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Jevon Zeev. Built with raw HTML/CSS & GitHub API.</p>
+        <div class="social-links">
+            <a href="https://github.com/jevonzeev" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
